@@ -14,7 +14,7 @@
     
 # Documentation
 
-The `--help` option gives you all you need to konw.
+The `--help` option gives you all you need to know.
 
     Add color to text.
 

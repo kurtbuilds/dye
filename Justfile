@@ -32,8 +32,9 @@ bump level:
     cargo bump {{level}}
     sleep 1 # I'm so confused, but cargo-bump seems to have a race condition where Cargo.lock doesn't get committed, so this fixes that.
     git commit -am "Bump {{level}} version"
-    git tag v$(rg  "version = \"([0-9.]+)\"" -r '$1' Cargo.toml)
-    git push origin v$(rg  "version = \"([0-9.]+)\"" -r '$1' Cargo.toml)
+    VERSION=$(rg  "version = \"([0-9.]+)\"" -or '$1' Cargo.toml | head -n1) &&\
+    git tag v$VERSION &&\
+    git push origin v$VERSION
 
 publish:
     cargo publish
