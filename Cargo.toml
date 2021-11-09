@@ -2,6 +2,10 @@
 name = "dye-cli"
 version = "0.1.1"
 edition = "2021"
+authors = ["Kurt Wolf <kurtwolfbuilds@gmail.com>"]
+description = "A tool to color shell text."
+license = "MIT"
+repository = "https://github.com/kurtbuilds/dye"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
