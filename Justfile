@@ -30,6 +30,7 @@ check:
 bump level:
     git diff-index --exit-code HEAD > /dev/null || (echo You have untracked changes. Commit your changes before bumping the version. && exit 1)
     cargo bump {{level}}
+    sleep 1 # I'm so confused, but cargo-bump seems to have a race condition where Cargo.lock doesn't get committed, so this fixes that.
     git commit -am "Bump {{level}} version"
     git tag v$(rg  "version = \"([0-9.]+)\"" -r '$1' Cargo.toml)
     git push origin v$(rg  "version = \"([0-9.]+)\"" -r '$1' Cargo.toml)
