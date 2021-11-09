@@ -1,6 +1,6 @@
 [package]
 name = "dye-cli"
-version = "0.1.9"
+version = "0.1.10"
 edition = "2021"
 authors = ["Kurt Wolf <kurtwolfbuilds@gmail.com>"]
 description = "A tool to color shell text."
