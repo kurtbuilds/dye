@@ -21,9 +21,8 @@ Colors:
 fn main() -> io::Result<()> {
     let args = App::new("dye")
         .version(VERSION)
-        .about("Add color to text.")
-        .setting(AppSettings::ArgRequiredElseHelp)
-        .arg(Arg::new("string").setting(ArgSettings::Hidden).min_values(1))
+        .about("Add color to text. Pass text as arguments (like the echo command), or use - to read stdin.")
+        .arg(Arg::new("string").setting(ArgSettings::Hidden).min_values(0))
 
         // foreground
         .arg("-k, --black 'Set foreground black'")
@@ -56,10 +55,14 @@ fn main() -> io::Result<()> {
         .get_matches();
 
 
-    let mut string = args.values_of("string").unwrap().collect::<Vec<&str>>().join(" ");
+    let mut string = args.values_of("string")
+        .map(|x| x.collect::<Vec<&str>>().join(" "))
+        .unwrap_or("-".to_string());
+    let mut print_newline = true;
     if string == "-" {
         string = String::new();
         std::io::stdin().read_to_string(&mut string)?;
+        print_newline = false;
     }
 
     let mut colored = if args.is_present("black") {
@@ -122,6 +125,6 @@ fn main() -> io::Result<()> {
     };
 
     SHOULD_COLORIZE.set_override(true);
-    println!("{}", colored);
+    print!("{}{}", colored, if print_newline { "\n" } else { "" });
     Ok(())
 }
