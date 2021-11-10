@@ -20,7 +20,8 @@ Wasn't that fun?
 
 The `--help` option gives you all you need to know.
 
-    Add color to text. Pass text as arguments (like the echo command), or use - to read stdin.
+    Add color to text. Pass text as arguments (like the echo command), or pass no arguments to read
+    stdin.
 
     USAGE:
         dye [OPTIONS]
