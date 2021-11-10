@@ -12,11 +12,15 @@
     echo $(dye --cyan INFO) Lowercase letter options modify the text, uppercase modifies the $(dye -R --black background).
     echo $(dye -g SUCCESS) You are a $(dye -u great) engineer for using tools that make your life simpler and easier.
     
+![gif of dye example usage](usage.gif)
+
+Wasn't that fun?
+
 # Documentation
 
 The `--help` option gives you all you need to know.
 
-    Add color to text.
+    Add color to text. Pass text as arguments (like the echo command), or use - to read stdin.
 
     USAGE:
         dye [OPTIONS]
@@ -47,4 +51,3 @@ The `--help` option gives you all you need to know.
         -y, --yellow       Set foreground yellow
         -Y, --bgyellow     Set background yellow
 
-Wasn't that fun?
