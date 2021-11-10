@@ -1,8 +1,11 @@
-use clap::{App, AppSettings, ArgSettings, Arg};
+extern crate colored;
+extern crate clap;
+
+use clap::{App, Arg};
 use colored::*;
-use std::io;
+use std::{io, env};
 use std::io::Read;
-use colored::control::SHOULD_COLORIZE;
+use colored::control::{SHOULD_COLORIZE};
 
 const VERSION: &'static str = env!("CARGO_PKG_VERSION");
 
@@ -18,11 +21,15 @@ Colors:
     white
 */
 
+fn normalize_env(env_res: Result<String, env::VarError>) -> Option<bool> {
+    env_res.ok().map(|s| s != "0")
+}
+
 fn main() -> io::Result<()> {
     let args = App::new("dye")
         .version(VERSION)
-        .about("Add color to text. Pass text as arguments (like the echo command), or use - to read stdin.")
-        .arg(Arg::new("string").setting(ArgSettings::Hidden).min_values(0))
+        .about("Add color to text. Pass text as arguments (like the echo command), or pass no arguments to read stdin.")
+        .arg(Arg::new("string").min_values(0))
 
         // foreground
         .arg("-k, --black 'Set foreground black'")
@@ -54,16 +61,16 @@ fn main() -> io::Result<()> {
 
         .get_matches();
 
-
-    let mut string = args.values_of("string")
-        .map(|x| x.collect::<Vec<&str>>().join(" "))
-        .unwrap_or("-".to_string());
     let mut print_newline = true;
-    if string == "-" {
-        string = String::new();
-        std::io::stdin().read_to_string(&mut string)?;
-        print_newline = false;
-    }
+    let mut string = match args.values_of("string") {
+        Some(x) => x.collect::<Vec<&str>>().join(" "),
+        None => {
+            print_newline = false;
+            let mut buf = String::new();
+            std::io::stdin().read_to_string(&mut buf)?;
+            buf
+        }
+    };
 
     let mut colored = if args.is_present("black") {
         string.black()
@@ -124,7 +131,18 @@ fn main() -> io::Result<()> {
         colored
     };
 
-    SHOULD_COLORIZE.set_override(true);
+    SHOULD_COLORIZE.set_override(
+        if normalize_env(env::var("CLICOLOR_FORCE")) == Some(true) {
+            true
+        } else if normalize_env(env::var("NO_COLOR")).is_some() {
+            false
+        } else {
+            true
+        }
+    );
+
+    // newlines are treated differently when inside escape blocks vs outside, so the newline
+    // can't be a part of the colored string.
     print!("{}{}", colored, if print_newline { "\n" } else { "" });
     Ok(())
 }
