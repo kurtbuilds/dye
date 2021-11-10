@@ -62,7 +62,7 @@ fn main() -> io::Result<()> {
         .get_matches();
 
     let mut print_newline = true;
-    let mut string = match args.values_of("string") {
+    let string = match args.values_of("string") {
         Some(x) => x.collect::<Vec<&str>>().join(" "),
         None => {
             print_newline = false;
