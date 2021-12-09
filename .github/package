@@ -26,10 +26,8 @@ cp \
   $EXECUTABLE \
   Cargo.lock \
   Cargo.toml \
-  GRAMMAR.md \
-  LICENSE \
-  README.adoc \
-  man/$BIN.1 \
+  LICENSE.md \
+  README.md \
   $DIST
 
 cd $DIST

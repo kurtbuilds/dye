@@ -47,3 +47,6 @@ publish:
 patch: test
     just version patch
     just publish
+
+package:
+    REF=master TARGET=$(rustc -vV | sed -n 's|host: ||p') TARGET_RUSTFLAGS= OS=macos-latest .github/package
