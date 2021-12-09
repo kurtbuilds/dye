@@ -45,9 +45,9 @@ dependencies = [
 
 [[package]]
 name = "clap_derive"
-version = "3.0.0-beta.5"
+version = "3.0.0-rc.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8b15c6b4f786ffb6192ffe65a36855bc1fc2444bcd0945ae16748dcd6ed7d0d3"
+checksum = "0152ba3ee01fa5a9133d4e15a1d9659c75d2270365768dd5a880cc7e68871874"
 dependencies = [
  "heck",
  "proc-macro-error",
@@ -69,7 +69,7 @@ dependencies = [
 
 [[package]]
 name = "dye-cli"
-version = "0.4.0"
+version = "0.4.1"
 dependencies = [
  "clap",
  "colored",
@@ -153,9 +153,9 @@ dependencies = [
 
 [[package]]
 name = "proc-macro2"
-version = "1.0.32"
+version = "1.0.33"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ba508cc11742c0dc5c1659771673afbab7a0efab23aa17e854cbab0837ed0b43"
+checksum = "fb37d2df5df740e582f28f8560cf425f52bb267d872fe58358eadb554909f07a"
 dependencies = [
  "unicode-xid",
 ]
