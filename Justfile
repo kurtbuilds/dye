@@ -48,5 +48,8 @@ patch: test
     just version patch
     just publish
 
+# Used to test the package script. You probably don't need this.
 package:
-    REF=master TARGET=$(rustc -vV | sed -n 's|host: ||p') TARGET_RUSTFLAGS= OS=macos-latest .github/package
+    rm -rf dist
+    REF=master TARGET=$(rustc -vV | sed -n 's|host: ||p') TARGET_RUSTFLAGS= OS=macos-latest GITHUB_REPOSITORY=kurtbuilds/dye \
+        .github/package

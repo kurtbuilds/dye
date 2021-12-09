@@ -5,7 +5,8 @@ set -euxo pipefail
 
 VERSION=${REF#"refs/tags/"}
 DIST=`pwd`/dist
-BIN=dye
+# This var can be modified if need be.
+BIN=${GITHUB_REPOSITORY##*/}
 
 echo "Packaging $BIN $VERSION for $TARGET..."
 
