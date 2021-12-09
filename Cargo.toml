@@ -14,5 +14,5 @@ name = "dye"
 path = "src/main.rs"
 
 [dependencies]
-clap = { version = "3.0.0-beta.4", features = ["color", "env", "suggestions"]}
+clap = { version = "=3.0.0-beta.4", features = ["color", "env", "suggestions"]}
 colored = "2.0.0"
