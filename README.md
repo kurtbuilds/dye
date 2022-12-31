@@ -8,7 +8,7 @@
     <img src="https://img.shields.io/github/stars/kurtbuilds/dye.svg?style=flat-square" alt="Stars" />
 </a>
 <a href="https://github.com/kurtbuilds/dye/actions">
-    <img src="https://img.shields.io/github/workflow/status/kurtbuilds/dye/test?style=flat-square" alt="Build Status" />
+    <img src="https://img.shields.io/github/actions/workflow/status/kurtbuilds/dye/test.yaml?style=flat-square" alt="Build Status" />
 </a>
 <a href="https://crates.io/crates/dye-cli">
     <img src="https://img.shields.io/crates/d/dye-cli?style=flat-square" alt="Downloads" />
